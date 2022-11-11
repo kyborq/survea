@@ -1,0 +1,11 @@
+/.vs
+/Core/obj
+/DatabaseStorage.Abstractions/obj
+/DatabaseStorage.MsSql/obj
+/TestStorage.Abstractions/obj
+/TestStorage.FileSystem/obj
+/Utils/obj
+/Web.Api/bin
+/Web.Api/obj
+/Web.Frontend/bin
+/Web.Frontend/obj
