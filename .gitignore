@@ -15,5 +15,7 @@
 /src/Web.Api/obj/
 /src/Web.Frontend/bin/
 /src/Web.Frontend/obj/
+/src/DatabaseStorage.MsSql.Migrations/bin/Debug/net5.0
+/src/DatabaseStorage.MsSql.Migrations/obj
 /src/Web.Frontend/App/node_modules/
 /src/Web.Frontend/App/package-lock.json
