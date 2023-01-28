@@ -1,6 +1,8 @@
 ﻿using Core.Entities;
 using DatabaseStorage.Abstractions.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DatabaseStorage.MsSql.Repositories
@@ -34,6 +36,17 @@ namespace DatabaseStorage.MsSql.Repositories
                 query = query.Include( u => u.Tests );
             }
             return query.Where( u => u.UserId == userId ).FirstOrDefault();
+        }
+
+        public User GetByEmail( string email )
+        {
+            return Entities.Where( u => u.Email.Equals( email ) ).FirstOrDefault();
+        }
+
+        [Obsolete]
+        public List<User> GetAll()
+        {
+            return Entities.ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Entities;
+using Core.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,16 @@ namespace DatabaseStorage.MsSql.UnitOfWorkImplementation
 {
     public class MsSqlUnitOfWork : IUnitOfWork
     {
-        private readonly IDbContext _dbContext;
+        private readonly ApplicationContext _dbContext;
 
-        public MsSqlUnitOfWork( IDbContext dbContext )
+        public MsSqlUnitOfWork( ApplicationContext dbContext )
         {
             _dbContext = dbContext;
         }
 
         public void Commit()
         {
+            var a = _dbContext.Set<User>().ToList();
             _dbContext.SaveChanges();
         }
     }

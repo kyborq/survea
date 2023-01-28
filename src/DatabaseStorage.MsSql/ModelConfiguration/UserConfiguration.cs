@@ -13,6 +13,7 @@ namespace DatabaseStorage.MsSql.ModelConfiguration
             builder.Property( u => u.DateOfBirth );
             builder.Property( u => u.Email ).IsRequired().HasMaxLength( 50 );
             builder.Property( u => u.AccountMode ).HasColumnType( "tinyint" ).IsRequired();
+            builder.Property( u => u.PasswordHash ).IsRequired();
 
             builder.HasOne( u => u.DetailedUserInfo ).WithOne( i => i.User );
             builder.HasMany( u => u.Tests ).WithOne( t => t.Owner ).HasForeignKey( t => t.OwnerId );

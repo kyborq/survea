@@ -10,9 +10,12 @@ namespace DatabaseStorage.MsSql
     {
         public static void AddMsSqlDatabaseStorage( this IServiceCollection services )
         {
-            services.AddScoped<IDbContext, ApplicationContext>();
+            //services.AddScoped<IDbContext, ApplicationContext>();
+            services.AddScoped<ApplicationContext>();
             services.AddScoped<IUnitOfWork, MsSqlUnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDetailedUserInfoRepository, DetailedUserInfoRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
         }
     }
 }

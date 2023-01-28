@@ -10,6 +10,7 @@ namespace Core.Entities
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public AccountMode AccountMode { get; set; }
+        public string PasswordHash { get; set; }
         
         public List<Tag> Tags { get; set; }
         public List<Test> Tests { get; set; }
