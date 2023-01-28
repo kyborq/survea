@@ -9,5 +9,10 @@ namespace DatabaseStorage.MsSql.Repositories
             : base( context )
         {
         }
+
+        public Test GetById( int id )
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
