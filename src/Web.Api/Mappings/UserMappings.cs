@@ -1,5 +1,7 @@
 ﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
+using Utils.Extensions;
 using Web.Api.Dtos;
 
 namespace Web.Api.Mappings
@@ -57,6 +59,23 @@ namespace Web.Api.Mappings
             }
 
             return dto;
+        }
+
+        public static User MapToUser( this RegisterUserDto dto, DetailedUserInfo detailedUserInfo )
+        {
+            return new User
+            {
+                Name = dto.Name,
+                Email = dto.Email,
+                DateOfBirth = dto.DateOfBirth,
+                AccountMode = dto.AccountMode,
+                DetailedUserInfo = detailedUserInfo,
+                PassedTests = new List<PassedTest>(),
+                PasswordHash = dto.Password.GetHash(),
+                ReferalCode = null,
+                Tags = new List<Tag>(),
+                Tests = new List<Test>()
+            };
         }
     }
 }

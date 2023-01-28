@@ -1,9 +1,6 @@
 ﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DatabaseStorage.Abstractions.Repositories
 {
@@ -12,5 +9,8 @@ namespace DatabaseStorage.Abstractions.Repositories
         public User GetById( int userId );
         public User GetWithFullInfoById( int userId, bool includeDetailedInfo = true,
             bool includeTags = true, bool includeTests = true );
+        public User GetByEmail( string email );
+        [Obsolete]
+        public List<User> GetAll();
     }
 }
