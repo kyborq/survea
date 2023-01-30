@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DatabaseStorage.Abstractions\DatabaseStorage.Abstractions.csproj" />
     <ProjectReference Include="..\TestStorage.Abstractions\TestStorage.Abstractions.csproj" />
   </ItemGroup>
 

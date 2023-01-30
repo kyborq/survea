@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using TestStorage.FileSystem;
 
 namespace Web.Api
 {
@@ -26,6 +27,7 @@ namespace Web.Api
             services.AddDbContext<ApplicationContext>( options =>
                      options.UseSqlServer( Configuration.GetConnectionString( "DefaultConnection" ) ) );
             services.AddMsSqlDatabaseStorage();
+            services.AddTestStorage();
 
             services.AddAuthentication( CookieAuthenticationDefaults.AuthenticationScheme )
                 .AddCookie( o => o.LoginPath = "/login" );

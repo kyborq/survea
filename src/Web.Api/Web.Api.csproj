@@ -19,6 +19,8 @@
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DatabaseStorage.Abstractions\DatabaseStorage.Abstractions.csproj" />
     <ProjectReference Include="..\DatabaseStorage.MsSql\DatabaseStorage.MsSql.csproj" />
+    <ProjectReference Include="..\TestStorage.Abstractions\TestStorage.Abstractions.csproj" />
+    <ProjectReference Include="..\TestStorage.FileSystem\TestStorage.FileSystem.csproj" />
   </ItemGroup>
 
 </Project>
