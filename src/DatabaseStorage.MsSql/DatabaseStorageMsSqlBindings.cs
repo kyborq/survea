@@ -16,6 +16,7 @@ namespace DatabaseStorage.MsSql
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDetailedUserInfoRepository, DetailedUserInfoRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
         }
     }
 }

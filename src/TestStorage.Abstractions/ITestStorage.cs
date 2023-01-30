@@ -4,7 +4,7 @@ namespace TestStorage.Abstractions
 {
     public interface ITestStorage
     {
-        public TestStorageInfo Save( Test test );
-        public Test Load( TestStorageInfo storageInfo );
+        public void Save( Test test );
+        public void LoadQuestions( Test test );
     }
 }
