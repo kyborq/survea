@@ -5,6 +5,7 @@ import { Avatar } from "../Avatar/Avatar";
 import { Button } from "../Button/Button";
 
 import styles from "./Header.module.css";
+
 import { LoginForm } from "../../forms/LoginForm";
 import { RegisterForm } from "../../forms/RegisterForm";
 import { useAppSelector } from "../../store/store";
@@ -25,6 +26,7 @@ export const Header = () => {
 
         <div className={styles.Actions}>
           <div className={styles.Buttons}>
+
             {logged && (
               <Button
                 label="Опрос"
