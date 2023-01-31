@@ -6,6 +6,7 @@ import styles from "./Modal.module.css";
 type Props = {
   title?: string;
   children?: React.ReactNode;
+  acceptTitle?: string;
   onClose?: () => void;
   onAccept?: () => void;
   onCancel?: () => void;
@@ -14,6 +15,7 @@ type Props = {
 export const Modal: React.FC<Props> = ({
   title,
   children,
+  acceptTitle,
   onClose,
   onAccept,
   onCancel,
@@ -30,7 +32,7 @@ export const Modal: React.FC<Props> = ({
           {onAccept && (
             <Button
               icon="save"
-              label="Опубликовать"
+              label={acceptTitle || "Опубликовать"}
               primary
               className={styles.Button}
               onClick={onAccept}

@@ -13,6 +13,9 @@ import location from "./location.svg";
 import clock from "./clock.svg";
 import info from "./info.svg";
 import upload from "./upload.svg";
+import circleCheck from "./circle-check.svg";
+import checkbox from "./checkbox.svg";
+import text from "./text.svg";
 
 export const icons = {
   user,
@@ -30,6 +33,9 @@ export const icons = {
   clock,
   info,
   upload,
+  circleCheck,
+  checkbox,
+  text,
 };
 
 export type TIcon = keyof typeof icons;

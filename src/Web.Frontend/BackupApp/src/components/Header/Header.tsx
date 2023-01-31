@@ -5,11 +5,18 @@ import { Avatar } from "../Avatar/Avatar";
 import { Button } from "../Button/Button";
 
 import styles from "./Header.module.css";
-import { Modal } from "../Modal/Modal";
-import { Input } from "../Input/Input";
+import { LoginForm } from "../../forms/LoginForm";
+import { RegisterForm } from "../../forms/RegisterForm";
+import { useAppSelector } from "../../store/store";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
-  const [surveyModal, setSurveyModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const [registerModal, setRegisterModal] = useState(false);
+
+  const navigate = useNavigate();
+
+  const logged = useAppSelector((s) => s.user.logged);
 
   return (
     <div className={styles.Header}>
@@ -18,29 +25,32 @@ export const Header = () => {
 
         <div className={styles.Actions}>
           <div className={styles.Buttons}>
-            <Button
-              label="Опрос"
-              icon="addCircle"
-              primary
-              onClick={() => setSurveyModal(true)}
-            />
+            {logged && (
+              <Button
+                label="Опрос"
+                icon="addCircle"
+                primary
+                onClick={() => {
+                  navigate("/constructor");
+                }}
+              />
+            )}
+            {!logged && (
+              <Button
+                label="Регистрация"
+                icon="addCircle"
+                onClick={() => setRegisterModal(true)}
+              />
+            )}
           </div>
 
-          <Avatar />
+          <Avatar onAuth={() => setLoginModal(true)} />
         </div>
       </div>
 
-      {!surveyModal && (
-        <Modal
-          onClose={() => {
-            console.log("пошел нахуй");
-            setSurveyModal(false);
-          }}
-          title="Войти в профиль"
-        >
-          <Input icon="user" placeholder="email" />
-          <Input icon="close" placeholder="password" />
-        </Modal>
+      {loginModal && <LoginForm onClose={() => setLoginModal(false)} />}
+      {registerModal && (
+        <RegisterForm onClose={() => setRegisterModal(false)} />
       )}
     </div>
   );

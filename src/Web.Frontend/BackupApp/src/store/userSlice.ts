@@ -19,7 +19,9 @@ export interface IUserSlice {
   logged?: boolean;
 }
 
-const initialState: IUserSlice = {};
+const initialState: IUserSlice = {
+  logged: true,
+};
 
 export const userSlice = createSlice({
   name: "user",
