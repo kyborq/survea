@@ -20,6 +20,8 @@ namespace DatabaseStorage.MsSql.ModelConfiguration
             builder.HasMany( u => u.Tags ).WithMany( u => u.Users ).UsingEntity( e => e.ToTable( "UserTag" ) );
             builder.HasMany( u => u.PassedTests ).WithOne( p => p.User ).HasForeignKey( p => p.UserId ).OnDelete( DeleteBehavior.NoAction );
             builder.HasOne( u => u.ReferalCode ).WithOne( r => r.Owner ).HasForeignKey<ReferalCode>( r => r.OwnerId );
+
+            builder.HasIndex( u => u.Email ).IsUnique(); 
         }
     }
 }
