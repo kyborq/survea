@@ -1,0 +1,49 @@
+.Button {
+  display: flex;
+  text-decoration: none;
+  color: #212429;
+  align-items: center;
+  padding: 16px 24px;
+  border-radius: 16px;
+  user-select: none;
+  transition: 150ms;
+}
+
+.Button:hover {
+  background-color: rgba(33, 36, 41, 0.025);
+  transition: 150ms;
+}
+
+.Button.Active {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 16px rgba(33, 36, 41, 0.02);
+  transition: 150ms;
+}
+
+.Button:active {
+  transform: scale(0.98);
+  transition: 150ms;
+}
+
+.Label {
+  margin-left: 16px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+@media screen and (max-width: 768px) {
+  .Label {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Button {
+    padding: 32px 0;
+    flex: 1;
+    justify-content: center;
+  }
+  .Button.Active svg {
+    fill: #fca311;
+  }
+}
