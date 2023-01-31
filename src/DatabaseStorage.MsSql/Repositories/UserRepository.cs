@@ -20,7 +20,7 @@ namespace DatabaseStorage.MsSql.Repositories
         }
 
         public User GetWithFullInfoById( int userId, bool includeDetailedInfo = true,
-            bool includeTags = true, bool includeTests = true )
+            bool includeTags = true, bool includeTests = true, bool includeAttempts = true )
         {
             var query = Entities.AsQueryable();
             if ( includeDetailedInfo )
@@ -35,18 +35,16 @@ namespace DatabaseStorage.MsSql.Repositories
             {
                 query = query.Include( u => u.Tests );
             }
+            if ( includeAttempts )
+            {
+                query = query.Include( u => u.PassedTests );
+            }
             return query.Where( u => u.UserId == userId ).FirstOrDefault();
         }
 
         public User GetByEmail( string email )
         {
             return Entities.Where( u => u.Email.Equals( email ) ).FirstOrDefault();
-        }
-
-        [Obsolete]
-        public List<User> GetAll()
-        {
-            return Entities.ToList();
         }
     }
 }

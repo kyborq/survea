@@ -2,6 +2,9 @@
 {
     public enum AccountMode
     {
-        Default = 0
+        Default = 0,
+        Respondent = 1,
+        Company = 2,
+        Admin = 3
     }
 }
