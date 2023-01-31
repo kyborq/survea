@@ -21,5 +21,20 @@ namespace Core.Entities
 
         public int DetailedUserInfoId { get; set; }
         public DetailedUserInfo DetailedUserInfo { get; set; }
+
+        public bool IsAllowedToPassTests()
+        {
+            return AccountMode == AccountMode.Respondent || AccountMode == AccountMode.Admin;
+        }
+
+        public bool IsAllowedToCreateTests()
+        {
+            return AccountMode == AccountMode.Company || AccountMode == AccountMode.Admin;
+        }
+
+        public bool IsAllowedToAddTags()
+        {
+            return AccountMode == AccountMode.Admin;
+        }
     }
 }

@@ -70,7 +70,8 @@ namespace Web.Api.Controllers
                 return Unauthorized();
             }
             int id = int.Parse( idString );
-            User user = _userRepository.GetById( id );
+            User user = _userRepository.GetWithFullInfoById( id, includeTags: false, includeTests: false, includAttempts: false );
+
             test.Owner = user;
             List<Tag> existingTags = _tagRepository.GetAll().ToList();
             List<Tag> tagsToSet = existingTags.Where( t => dto.Tags.Contains( t.TagValue ) ).ToList();
@@ -82,6 +83,7 @@ namespace Web.Api.Controllers
             };
             test.CreationDate = DateTime.UtcNow;
             _testRepository.Add( test );
+            user.DetailedUserInfo.CreatedTestCount++;
             _testRepository.SaveChanges();
             _testStorage.Save( test );
             return Ok();

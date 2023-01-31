@@ -15,5 +15,6 @@ namespace Web.Api.Dtos
         public DetailedUserInfoDto DetailedUserInfo { get; set; }
         public List<string> Tags { get; set; }
         public List<int> TestIds { get; set; }
+        public List<int> AttemptIds { get; set; }
     }
 }

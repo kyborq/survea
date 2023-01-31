@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using System;
 using System.Collections.Generic;
 using Utils.Extensions;
 using Web.Api.Dtos;
@@ -21,7 +20,7 @@ namespace Web.Api.Mappings
         }
 
         public static UserFullInfoDto MapToFullInfoDto( this User user, bool includeDetailedInfo = true, 
-            bool includeTags = true, bool includeTestIds = true )
+            bool includeTags = true, bool includeTestIds = true, bool includeAttemptIds = true )
         {
             UserFullInfoDto dto = new UserFullInfoDto
             {
@@ -32,7 +31,8 @@ namespace Web.Api.Mappings
                 AccountMode = user.AccountMode,
                 DetailedUserInfo = null,
                 Tags = null,
-                TestIds = null
+                TestIds = null,
+                AttemptIds = null
             };
 
             if ( includeDetailedInfo )
@@ -55,6 +55,15 @@ namespace Web.Api.Mappings
                 foreach ( var test in user.Tests )
                 {
                     dto.TestIds.Add( test.TestId );
+                }
+            }
+
+            if ( includeAttemptIds )
+            {
+                dto.AttemptIds = new List<int>();
+                foreach ( var attempt in user.PassedTests )
+                {
+                    dto.AttemptIds.Add( attempt.TestPassingId );
                 }
             }
 
