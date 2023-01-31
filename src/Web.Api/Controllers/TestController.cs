@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using TestStorage.Abstractions;
 using Web.Api.Dtos;
 using Web.Api.Mappings;
@@ -70,6 +71,7 @@ namespace Web.Api.Controllers
             }
             int id = int.Parse( idString );
             User user = _userRepository.GetWithFullInfoById( id, includeTags: false, includeTests: false, includAttempts: false );
+
             test.Owner = user;
             List<Tag> existingTags = _tagRepository.GetAll().ToList();
             List<Tag> tagsToSet = existingTags.Where( t => dto.Tags.Contains( t.TagValue ) ).ToList();
