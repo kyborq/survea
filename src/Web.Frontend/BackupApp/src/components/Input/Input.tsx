@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TIcon } from "../../icons";
+import { classNames } from "../../utils/classnames";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon";
 
@@ -9,13 +10,40 @@ type Props = {
   icon: TIcon;
   placeholder?: string;
   clearButton?: boolean;
+  className?: string;
+  label?: string;
+  initValue?: string;
+  onChangeText?: (value: string) => void;
 };
 
-export const Input: React.FC<Props> = ({ icon, placeholder, clearButton }) => {
+export const Input: React.FC<Props> = ({
+  icon,
+  placeholder,
+  clearButton,
+  className,
+  initValue,
+  onChangeText,
+}) => {
+  const [value, setValue] = useState(initValue);
+
+  useEffect(() => {
+    setValue(initValue);
+  }, [initValue]);
+
+  // useEffect(() => {
+  //   onChangeText && onChangeText(value);
+  // }, [value]);
+
   return (
-    <label className={styles.Field}>
+    <label className={classNames(styles.Field, className)}>
       <Icon name={icon} fill="#c7c7c7" />
-      <input placeholder={placeholder} className={styles.Input} />
+      <input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={() => onChangeText && onChangeText(value)}
+        placeholder={placeholder}
+        className={styles.Input}
+      />
       {clearButton && <Button icon="close" className={styles.ClearButton} />}
     </label>
   );

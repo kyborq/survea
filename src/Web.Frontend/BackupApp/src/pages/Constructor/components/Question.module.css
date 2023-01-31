@@ -1,0 +1,41 @@
+.Question {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.Index {
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.Answers {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex: 1;
+}
+
+.Option {
+  width: calc(50% - 44px);
+}
+
+.Input {
+  display: flex;
+  gap: 16px;
+  background-color: #e8ecef;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: bold;
+  flex: 1;
+  font-family: Montserrat, sans-serif;
+}

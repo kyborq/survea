@@ -9,13 +9,12 @@ import styles from "./Avatar.module.css";
 type Props = {
   image?: string;
   link?: string;
+  onAuth?: () => void;
 };
 
-export const Avatar: React.FC<Props> = ({ image, link }) => {
-  const [authModal, setAuthModal] = useState(false);
-
+export const Avatar: React.FC<Props> = ({ image, link, onAuth }) => {
   return (
-    <div className={styles.Avatar} onClick={() => setAuthModal(true)}>
+    <div className={styles.Avatar} onClick={onAuth}>
       {!!image ? (
         <img src={image} className={styles.Image} alt="" />
       ) : (

@@ -7,10 +7,8 @@ export const Navigation = () => {
   return (
     <div className={styles.Navigation}>
       <NavButton icon="home" label="Главная" link="/" />
-      <NavButton icon="user" label="Профиль" link="/user" />
-      <NavButton icon="newspaper" label="Новости" link="/feed" />
-      <NavButton icon="calendar" label="Календарь" link="/calendar" />
-      <NavButton icon="search" label="Поиск" link="/search" />
+      <NavButton icon="user" label="Профиль" link="/profile" />
+      <NavButton icon="newspaper" label="Опросы" link="/surveys" />
     </div>
   );
 };
