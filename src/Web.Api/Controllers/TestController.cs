@@ -71,7 +71,10 @@ namespace Web.Api.Controllers
             }
             int id = int.Parse( idString );
             User user = _userRepository.GetWithFullInfoById( id, includeTags: false, includeTests: false, includAttempts: false );
-
+            if ( !user.IsAllowedToCreateTests() )
+            {
+                return Forbid();
+            }
             test.Owner = user;
             List<Tag> existingTags = _tagRepository.GetAll().ToList();
             List<Tag> tagsToSet = existingTags.Where( t => dto.Tags.Contains( t.TagValue ) ).ToList();

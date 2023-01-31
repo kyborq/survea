@@ -13,6 +13,9 @@ namespace DatabaseStorage.MsSql.ModelConfiguration
 
             builder.HasOne( t => t.User ).WithMany( u => u.PassedTests );
             builder.HasOne( t => t.Test ).WithMany( t => t.Attempts );
+
+            builder.HasIndex( t => t.UserId );
+            builder.HasIndex( t => t.TestId );
         }
     }
 }

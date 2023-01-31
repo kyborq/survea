@@ -66,6 +66,11 @@ namespace Web.Api.Controllers
                 return Unauthorized();
             }
             int id = int.Parse( idString );
+            User user = _userRepository.GetWithFullInfoById( id, includeTags: false, includeTests: false, includAttempts: false );
+            if ( !user.IsAllowedToPassTests() )
+            {
+                return Forbid();
+            }
             List<Answer> answers = new List<Answer>();
             foreach ( var answerDto in dto.Answers )
             {
@@ -87,7 +92,6 @@ namespace Web.Api.Controllers
             Test test = _testRepository.GetWithFullInfoById( dto.TestId, 
                 includeTags: false, includeOwner: false, includePassingAttemps: false );
             test.DetailedTestInfo.AttemptCount++;
-            User user = _userRepository.GetWithFullInfoById( id, includeTags: false, includeTests: false, includAttempts: false );
             user.DetailedUserInfo.PassedTestCount++;
             _attemptRepository.SaveChanges();
             return Ok();
