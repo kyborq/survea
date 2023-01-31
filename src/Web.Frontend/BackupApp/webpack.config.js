@@ -8,8 +8,6 @@ const CSS_MODULE_REGEX = /\.module\.css$/;
 const ASSET_REGEX = /\.(png|jpg|jpeg|gif)$/i;
 const TSX_REGEX = /\.ts(x?)$/;
 
-const HOST = "afisher-yo.net";
-
 module.exports = {
   entry: "./src/index.tsx",
   output: {
@@ -19,21 +17,7 @@ module.exports = {
   },
   devServer: {
     static: "./public",
-    host: HOST,
-    port: 3000,
     historyApiFallback: true,
-    proxy: {
-      "**": {
-        target: `http://${HOST}`, // Целевой адрес локального сервера, куда будут проксироваться запросы с дев сервера
-        onProxyRes(proxyRes, req, res) {
-          if (proxyRes.headers.location) {
-            let location = proxyRes.headers.location;
-            location = location.replace(HOST, `${HOST}:3000`);
-            proxyRes.headers.location = location;
-          }
-        },
-      },
-    },
   },
   optimization: {
     runtimeChunk: "single",
