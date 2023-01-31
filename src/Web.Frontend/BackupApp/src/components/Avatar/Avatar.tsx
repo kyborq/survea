@@ -21,19 +21,6 @@ export const Avatar: React.FC<Props> = ({ image, link, onAuth }) => {
         <Icon name="user" fill="#212429" />
       )}
       {!!link && <Link to={link} className={styles.Link} />}
-
-      {!authModal && (
-        <Modal
-          onClose={() => {
-            console.log("пошел нахуй");
-            setAuthModal(false);
-          }}
-          title="Войти в профиль"
-        >
-          <Input icon="user" placeholder="email" />
-          <Input icon="close" placeholder="password" />
-        </Modal>
-      )}
     </div>
   );
 };
