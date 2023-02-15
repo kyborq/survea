@@ -1,0 +1,14 @@
+.Container {
+  flex: 1;
+  display: flex;
+}
+
+.Sidebar {
+  width: 264px;
+  position: fixed;
+  flex: 1;
+  padding: 128px 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 256px);
+}
