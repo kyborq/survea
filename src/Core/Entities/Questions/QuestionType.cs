@@ -3,7 +3,7 @@
     public enum QuestionType
     {
         SingleChoice = 0,
-        MultiChoice,
-        TextField
+        MultiChoice = 1,
+        TextField = 2
     }
 }

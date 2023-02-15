@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using TestStorage.FileSystem;
 
 namespace Web.Api
@@ -29,7 +29,19 @@ namespace Web.Api
             services.AddTestStorage();
 
             services.AddAuthentication( CookieAuthenticationDefaults.AuthenticationScheme )
-                .AddCookie( o => o.LoginPath = "/login" );
+                .AddCookie( o =>
+                {
+                    o.Events.OnRedirectToAccessDenied = context => 
+                    {
+                        context.Response.StatusCode = 403;
+                        return Task.CompletedTask;
+                    };
+                    o.Events.OnRedirectToLogin = context =>
+                    {
+                        context.Response.StatusCode = 401;
+                        return Task.CompletedTask;
+                    };
+                } );
             services.AddAuthorization();
 
             services.AddControllers();
@@ -48,7 +60,8 @@ namespace Web.Api
                 app.UseSwaggerUI( c => c.SwaggerEndpoint( "/swagger/v1/swagger.json", "Web.Api v1" ) );
             }
 
-            //app.UseHttpsRedirection();
+            app.UseCors( builder => builder.AllowAnyOrigin().AllowAnyHeader()
+                .WithMethods( "GET", "POST", "PUT", "DELETE" ) );
 
             app.UseRouting();
 
@@ -59,7 +72,6 @@ namespace Web.Api
             {
                 endpoints.MapControllers();
             } );
-            
         }
     }
 }

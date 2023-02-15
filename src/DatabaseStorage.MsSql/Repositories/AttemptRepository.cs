@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace DatabaseStorage.MsSql.Repositories
 {
+    // TODO: async/await
     public class AttemptRepository : Repository<PassedTest>, IAttemptRepository
     {
         public AttemptRepository( ApplicationContext context )
