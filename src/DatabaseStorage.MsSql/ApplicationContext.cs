@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseStorage.MsSql
 {
-    public class ApplicationContext : DbContext, IDbContext
+    public class ApplicationContext : DbContext
     {
         public ApplicationContext( DbContextOptions<ApplicationContext> options )
             : base( options )

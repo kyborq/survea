@@ -19,25 +19,21 @@ namespace DatabaseStorage.MsSql.Repositories
         public void Add( TEntity entity )
         {
             Entities.Add( entity );
-            _context.SaveChanges();
         }
 
         public void Add( IEnumerable<TEntity> entities )
         {
             Entities.AddRange( entities );
-            _context.SaveChanges();
         }
 
         public void Remove( TEntity entity )
         {
             Entities.Remove( entity );
-            _context.SaveChanges();
         }
 
         public void Remove( IEnumerable<TEntity> entities )
         {
             Entities.RemoveRange( entities );
-            _context.SaveChanges();
         }
 
         public void SaveChanges()

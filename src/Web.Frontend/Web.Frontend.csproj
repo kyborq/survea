@@ -1,4 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  
+  <ItemGroup>
+    <None Remove="**/*.ts;**/*.tsx" />
+    <Content Remove="**/*.ts;**/*.tsx" />
+    <TypeScriptCompile Include="**/*.ts;**/*.tsx" />
+  </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -44,6 +50,7 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       </ResolvedFileToPublish>
     </ItemGroup>
+    
   </Target>
 
 </Project>

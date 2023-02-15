@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using Core.UnitOfWork;
 using DatabaseStorage.Abstractions.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,18 +18,15 @@ namespace Web.Api.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IDetailedUserInfoRepository _detailedUserInfoRepository;
         private readonly ITagRepository _tagRepository;
-        private readonly IUnitOfWork _unitOfWork;
 
         public UserController( 
             IUserRepository userRepository, 
             IDetailedUserInfoRepository detailedUserInfoRepository,
-            ITagRepository tagRepository,
-            IUnitOfWork unitOfWork )
+            ITagRepository tagRepository )
         {
             _userRepository = userRepository;
             _detailedUserInfoRepository = detailedUserInfoRepository;
             _tagRepository = tagRepository;
-            _unitOfWork = unitOfWork;
         }
 
         [Authorize]
