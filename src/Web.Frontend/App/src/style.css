@@ -1,3 +1,12 @@
 body {
   margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #f8f9fa;
+}
+
+input,
+textarea,
+button {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
 }

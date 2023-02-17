@@ -1,0 +1,12 @@
+.Options {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.Footer {
+  display: flex;
+  margin-top: 24px;
+  gap: 8px;
+}
