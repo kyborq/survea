@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using DatabaseStorage.Abstractions.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DatabaseStorage.MsSql.Repositories
@@ -10,6 +11,11 @@ namespace DatabaseStorage.MsSql.Repositories
         public TestRepository( ApplicationContext context )
             : base( context )
         {
+        }
+
+        public List<Test> GetAll()
+        {
+            return Entities.ToList();
         }
 
         public Test GetById( int id )

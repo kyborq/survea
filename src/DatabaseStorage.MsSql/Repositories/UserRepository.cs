@@ -1,7 +1,6 @@
 ﻿using Core.Entities;
 using DatabaseStorage.Abstractions.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +11,11 @@ namespace DatabaseStorage.MsSql.Repositories
         public UserRepository( ApplicationContext context )
             : base( context )
         {
+        }
+
+        public List<User> GetAll()
+        {
+            return Entities.ToList();
         }
 
         public User GetById( int userId )
