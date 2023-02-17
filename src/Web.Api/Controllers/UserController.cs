@@ -29,6 +29,12 @@ namespace Web.Api.Controllers
             _tagRepository = tagRepository;
         }
 
+        [HttpGet]
+        public List<UserDto> GetAll()
+        {
+            return _userRepository.GetAll().Select( u => u.MapToDto() ).ToList();
+        }
+
         [Authorize]
         [HttpGet( "{id}" )]       
         public UserDto GetUser( [FromRoute] int id )

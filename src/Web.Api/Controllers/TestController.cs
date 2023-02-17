@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using TestStorage.Abstractions;
 using Web.Api.Dtos;
 using Web.Api.Mappings;
@@ -32,6 +31,12 @@ namespace Web.Api.Controllers
             _userRepository = userRepository;
             _tagRepository = tagRepository;
             _testStorage = testStorage;
+        }
+
+        [HttpGet]
+        public List<TestDto> GetAll()
+        {
+            return _testRepository.GetAll().Select( t => t.MapToTestInfo() ).ToList();
         }
 
         [Authorize]
