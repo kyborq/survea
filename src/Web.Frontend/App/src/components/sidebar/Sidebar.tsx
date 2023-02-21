@@ -12,7 +12,7 @@ export const Sidebar = () => {
       <div className={styles.Sidebar}>
         <Logo />
         <Navigation />
-        <Profile name="Костян" />
+        <Profile name="Профиль" />
       </div>
     </div>
   );

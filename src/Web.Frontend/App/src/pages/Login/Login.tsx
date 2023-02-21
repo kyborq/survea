@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +7,8 @@ import { Input } from "../../components/input/Input";
 import { Wrap } from "../../components/wrap/Wrap";
 import { LoginApi, UserApi } from "../../services/api";
 import { Configuration } from "../../services/configuration";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectLogged, setAuth, setUser, TUser } from "../../store/userSlice";
 
 type TLoginForm = {
   email: string;
@@ -16,10 +18,11 @@ type TLoginForm = {
 export const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<TLoginForm> = async (data) => {
     const config = new Configuration({
-      basePath: "https://localhost:5001/",
+      basePath: "http://localhost:5001",
     });
 
     const loginApi = new LoginApi(config);
@@ -29,9 +32,10 @@ export const Login = () => {
       password: data.password,
     });
 
-    console.log(result);
+    // TODO: При логине сохранить пользователя
 
     if (result.status === 200) {
+      dispatch(setAuth(true));
       navigate("/");
     }
   };

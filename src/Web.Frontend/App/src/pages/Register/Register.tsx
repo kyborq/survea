@@ -20,7 +20,7 @@ export const Register = () => {
 
   const onSubmit: SubmitHandler<TRegisterForm> = async (data) => {
     const config = new Configuration({
-      basePath: "http://localhost:5000",
+      basePath: "http://localhost:5001",
     });
 
     const userApi = new UserApi(config);
