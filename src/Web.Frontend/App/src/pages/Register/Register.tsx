@@ -33,8 +33,9 @@ export const Register = () => {
       password: data.password,
     });
 
-    // result.status
-    console.log(result);
+    if (result.status === 200) {
+      navigate("/login");
+    }
   };
 
   return (

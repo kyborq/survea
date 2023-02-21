@@ -9,6 +9,7 @@ namespace DatabaseStorage.MsSql
         public ApplicationContext( DbContextOptions<ApplicationContext> options )
             : base( options )
         {
+            Database.SetCommandTimeout( 9000 );
         }
 
         protected override void OnModelCreating( ModelBuilder modelBuilder )

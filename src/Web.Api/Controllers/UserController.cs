@@ -61,6 +61,7 @@ namespace Web.Api.Controllers
             };
             _detailedUserInfoRepository.Add( detailedInfo );
             _userRepository.Add( dto.MapToUser( detailedInfo ) );
+            _userRepository.SaveChanges();
         }
 
         [Authorize]

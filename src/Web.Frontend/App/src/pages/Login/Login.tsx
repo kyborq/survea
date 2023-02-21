@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Form } from "../../components/forms/Form";
 import { Input } from "../../components/input/Input";
 import { Wrap } from "../../components/wrap/Wrap";
-
-import * as API from "../../services/";
+import { LoginApi, UserApi } from "../../services/api";
+import { Configuration } from "../../services/configuration";
 
 type TLoginForm = {
   email: string;
@@ -18,9 +18,22 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<TLoginForm> = async (data) => {
-    const loginApi = new API.LoginApi();
-    const result = await loginApi.apiLoginPost({ ...data });
-    console.log(result.status);
+    const config = new Configuration({
+      basePath: "https://localhost:5001/",
+    });
+
+    const loginApi = new LoginApi(config);
+
+    const result = await loginApi.apiLoginPost({
+      email: data.email,
+      password: data.password,
+    });
+
+    console.log(result);
+
+    if (result.status === 200) {
+      navigate("/");
+    }
   };
 
   return (
