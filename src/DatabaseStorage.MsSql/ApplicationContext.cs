@@ -1,5 +1,4 @@
-﻿using Core.Entities;
-using DatabaseStorage.MsSql.ModelConfiguration;
+﻿using DatabaseStorage.MsSql.ModelConfiguration;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseStorage.MsSql

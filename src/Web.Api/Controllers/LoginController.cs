@@ -39,7 +39,7 @@ namespace Web.Api.Controllers
             ClaimsIdentity claimsIdentity = new ClaimsIdentity( claims, "Cookies" );
             await HttpContext.SignInAsync( 
                 CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal( claimsIdentity ) );
-            return Ok();
+            return Ok( user.UserId );
         }
 
         [HttpPost]
