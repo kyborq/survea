@@ -1,5 +1,4 @@
-﻿using Core.Entities;
-using DatabaseStorage.MsSql.ModelConfiguration;
+﻿using DatabaseStorage.MsSql.ModelConfiguration;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseStorage.MsSql
@@ -9,6 +8,7 @@ namespace DatabaseStorage.MsSql
         public ApplicationContext( DbContextOptions<ApplicationContext> options )
             : base( options )
         {
+            Database.SetCommandTimeout( 9000 );
         }
 
         protected override void OnModelCreating( ModelBuilder modelBuilder )

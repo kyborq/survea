@@ -50,7 +50,7 @@ namespace Web.Api.Controllers
         }
 
         [HttpPost]
-        public void RegisterUser( [FromBody] RegisterUserDto dto )
+        public int RegisterUser( [FromBody] RegisterUserDto dto )
         {
             var detailedInfo = new DetailedUserInfo
             {
@@ -60,7 +60,10 @@ namespace Web.Api.Controllers
                 RegistrationDate = DateTime.UtcNow
             };
             _detailedUserInfoRepository.Add( detailedInfo );
-            _userRepository.Add( dto.MapToUser( detailedInfo ) );
+            User user = dto.MapToUser( detailedInfo );
+            _userRepository.Add( user );
+            _userRepository.SaveChanges();
+            return user.UserId;
         }
 
         [Authorize]
@@ -77,6 +80,20 @@ namespace Web.Api.Controllers
             user.DetailedUserInfo.Gender = dto.Gender;
             _userRepository.SaveChanges();
             return Ok();
+        }
+
+        [Authorize]
+        [HttpGet( "current" )]
+        public IActionResult GetCurrentUser()
+        {
+            string idString = HttpContext.User.Claims.Where( c => c.Type == ClaimTypes.Name ).FirstOrDefault()?.Value;
+            if ( idString == null )
+            {
+                return Unauthorized();
+            }
+            int id = int.Parse( idString );
+            User user = _userRepository.GetById( id );
+            return Ok( user.MapToDto() );
         }
 
         [Authorize]
