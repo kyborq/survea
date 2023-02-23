@@ -1,0 +1,22 @@
+.Wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.Wrap.Centered {
+  margin: auto;
+}
+
+.Title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 48px;
+  margin-bottom: 32px;
+  /* flex: 1, */
+}

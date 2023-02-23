@@ -1,0 +1,8 @@
+.Panel {
+  display: flex;
+  gap: 8px;
+}
+
+.Form {
+  margin-bottom: 16px;
+}
