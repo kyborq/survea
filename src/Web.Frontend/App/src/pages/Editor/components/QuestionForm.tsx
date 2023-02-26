@@ -1,68 +1,22 @@
-import React, { useEffect } from "react";
-import {
-  FieldValues,
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-  useFormContext,
-} from "react-hook-form";
+import React from "react";
+import { Control, UseFormRegister } from "react-hook-form";
 
-import { IconButton } from "../../../components/button/IconButton";
 import { Card } from "../../../components/card/Card";
 import { Input } from "../../../components/input/Input";
-
-import styles from "./QuestionForm.module.css";
+import { TQuestionForm } from "./EditorForm";
+import { OptionsForm } from "./OptionsForm";
 
 type Props = {
-  index?: number;
-  onSubmit?: SubmitHandler<FieldValues>;
+  index: number;
+  control: Control<TQuestionForm>;
+  register: UseFormRegister<TQuestionForm>;
 };
 
-export const QuestionForm: React.FC<Props> = ({ index, onSubmit }) => {
-  const { handleSubmit, control, register, setValue } = useFormContext();
-
-  const { fields, remove, append } = useFieldArray({
-    control,
-    name: "options",
-  });
-
+export const QuestionForm: React.FC<Props> = ({ index, control, register }) => {
   return (
     <Card>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        onChange={handleSubmit(onSubmit)}
-      >
-        <Input
-          icon="info"
-          placeholder={`Вопрос №${index + 1}`}
-          {...register("name" as const)}
-        />
-        <div className={styles.Options}>
-          {fields.map((field, index) => (
-            <Input
-              key={field.id}
-              icon="circleCheck"
-              placeholder={`Вариант ${index + 1}`}
-              {...register(`options.${index}.value` as const)}
-            />
-          ))}
-        </div>
-
-        <div className={styles.Footer}>
-          <IconButton
-            onClick={() => {
-              append({ value: "" });
-            }}
-            icon="addCircle"
-          />
-          <IconButton
-            icon="trash"
-            onClick={() => {
-              fields.length > 2 && remove(fields.length - 1);
-            }}
-          />
-        </div>
-      </form>
+      <Input icon="info" {...register(`questions.${index}.question`)} />
+      <OptionsForm control={control} index={index} register={register} />
     </Card>
   );
 };

@@ -1,52 +1,33 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { Button } from "../../components/button/Button";
 
 import { Wrap } from "../../components/wrap/Wrap";
-import { QuestionPanel } from "./components/QuestionPanel";
-import { QuestionForm } from "./components/QuestionForm";
-import {
-  Controller,
-  FormProvider,
-  useFieldArray,
-  useForm,
-} from "react-hook-form";
+import { EditorForm, TQuestionForm } from "./components/EditorForm";
 
 export const Editor = () => {
-  const form = useForm({
+  const { control, register, getValues } = useForm<TQuestionForm>({
     defaultValues: {
+      name: "Опросник",
       questions: [
         {
-          name: "",
-          options: [{ value: "" }, { value: "" }],
+          question: "Вы собака?",
+          options: ["Да", "Нет", "Я кот"],
+          type: 0,
         },
       ],
     },
   });
 
-  const { control, register } = form;
-
-  const { fields, remove, append } = useFieldArray({
-    control,
-    name: "questions",
-  });
-
-  console.log(form.getValues());
-
   return (
     <Wrap title="Редактор" icon="edit">
-      <QuestionPanel
-        addSingle={() => {
-          append({
-            name: "",
-            options: [{ value: "" }, { value: "" }],
-          });
+      <EditorForm control={control} register={register} />
+      <Button
+        label="Сохранить"
+        onClick={() => {
+          console.log(getValues());
         }}
       />
-
-      <FormProvider {...form}>
-        {fields.map((field, index) => (
-          <QuestionForm index={index} />
-        ))}
-      </FormProvider>
     </Wrap>
   );
 };

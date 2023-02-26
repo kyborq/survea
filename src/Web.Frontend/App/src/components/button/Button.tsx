@@ -10,6 +10,7 @@ type Props = {
   label: string;
   fill?: boolean;
   primary?: boolean;
+  className?: string;
   onClick?: () => void;
 };
 
@@ -18,6 +19,7 @@ export const Button: React.FC<Props> = ({
   icon,
   fill,
   primary,
+  className,
   onClick,
 }) => {
   return (
@@ -25,7 +27,8 @@ export const Button: React.FC<Props> = ({
       className={classNames(
         styles.Button,
         fill && styles.Fill,
-        primary && styles.Primary
+        primary && styles.Primary,
+        className
       )}
       onClick={onClick}
     >
