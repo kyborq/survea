@@ -1,4 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  FieldValues,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 
 import { IconButton } from "../../../components/button/IconButton";
 import { Card } from "../../../components/card/Card";
@@ -6,40 +13,56 @@ import { Input } from "../../../components/input/Input";
 
 import styles from "./QuestionForm.module.css";
 
-export const QuestionForm = () => {
+type Props = {
+  index?: number;
+  onSubmit?: SubmitHandler<FieldValues>;
+};
+
+export const QuestionForm: React.FC<Props> = ({ index, onSubmit }) => {
+  const { handleSubmit, control, register, setValue } = useFormContext();
+
+  const { fields, remove, append } = useFieldArray({
+    control,
+    name: "options",
+  });
+
   return (
     <Card>
-      <Input
-        icon="info"
-        // label="Текст вопроса"
-        placeholder="Введите текст вопроса"
-      />
-      <div className={styles.Options}>
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        onChange={handleSubmit(onSubmit)}
+      >
         <Input
-          icon="circleCheck"
-          // label="Вариант №1"
-          placeholder="Введите текст"
+          icon="info"
+          placeholder={`Вопрос №${index + 1}`}
+          {...register("name" as const)}
         />
-        <Input
-          icon="circleCheck"
-          // label="Вариант №2"
-          placeholder="Введите текст"
-        />
-        <Input
-          icon="circleCheck"
-          // label="Вариант №3"
-          placeholder="Введите текст"
-        />
-        <Input
-          icon="circleCheck"
-          // label="Вариант №4"
-          placeholder="Введите текст"
-        />
-      </div>
-      {/* <div className={styles.Footer}>
-        <IconButton icon="addCircle" />
-        <IconButton icon="trash" />
-      </div> */}
+        <div className={styles.Options}>
+          {fields.map((field, index) => (
+            <Input
+              key={field.id}
+              icon="circleCheck"
+              placeholder={`Вариант ${index + 1}`}
+              {...register(`options.${index}.value` as const)}
+            />
+          ))}
+        </div>
+
+        <div className={styles.Footer}>
+          <IconButton
+            onClick={() => {
+              append({ value: "" });
+            }}
+            icon="addCircle"
+          />
+          <IconButton
+            icon="trash"
+            onClick={() => {
+              fields.length > 2 && remove(fields.length - 1);
+            }}
+          />
+        </div>
+      </form>
     </Card>
   );
 };
