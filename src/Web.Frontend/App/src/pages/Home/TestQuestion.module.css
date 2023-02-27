@@ -1,0 +1,15 @@
+.Options {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.Button {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.Card {
+  margin-bottom: 16px;
+}

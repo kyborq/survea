@@ -13,3 +13,9 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.CardHeader {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}

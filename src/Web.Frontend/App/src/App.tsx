@@ -8,6 +8,7 @@ import { Search } from "./pages/Search/Search";
 import { Profile } from "./pages/Profile/Profile";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
+import { TestView } from "./pages/Home/TestView";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/test/:id",
+        element: <TestView />,
       },
       {
         path: "/search",

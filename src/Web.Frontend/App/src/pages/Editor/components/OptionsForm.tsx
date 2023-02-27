@@ -8,15 +8,21 @@ import { TQuestionForm } from "./EditorForm";
 import styles from "./OptionsForm.module.css";
 
 type Props = {
+  multi?: boolean;
   index: number;
   control: Control<any>;
   register: UseFormRegister<TQuestionForm>;
 };
 
-export const OptionsForm: React.FC<Props> = ({ control, index, register }) => {
+export const OptionsForm: React.FC<Props> = ({
+  control,
+  multi,
+  index,
+  register,
+}) => {
   const { fields, append, insert, remove } = useFieldArray({
     control,
-    name: `questions[${index}].options`,
+    name: `questions[${index}].choices`,
     rules: {
       required: true,
     },
@@ -28,8 +34,8 @@ export const OptionsForm: React.FC<Props> = ({ control, index, register }) => {
         return (
           <Input
             key={field.id}
-            icon="circleCheck"
-            {...register(`questions.${index}.options.${id}`, {
+            icon={multi ? "checkbox" : "circleCheck"}
+            {...register(`questions.${index}.choices.${id}`, {
               required: true,
             })}
             onBlur={(e) => {

@@ -38,14 +38,10 @@ export const Login = () => {
       }
     );
 
-    // // TODO: При логине сохранить пользователя
-
-    console.log(result);
-
-    // if (result.status === 200) {
-    //   dispatch(setAuth(true));
-    //   navigate("/");
-    // }
+    if (result.status === 200) {
+      dispatch(setAuth(true));
+      navigate("/");
+    }
   };
 
   return (

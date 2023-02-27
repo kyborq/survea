@@ -332,7 +332,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserCurrentGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+        async apiUserCurrentGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<UserDto>>> {
             const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserCurrentGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -442,7 +442,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserCurrentGet(options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+        async apiUserCurrentGet(options?: AxiosRequestConfig): Promise<AxiosResponse<UserDto>> {
             return UserApiFp(configuration).apiUserCurrentGet(options).then((request) => request(axios, basePath));
         },
         /**
@@ -522,7 +522,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserCurrentGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+    public async apiUserCurrentGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<UserDto>> {
         return UserApiFp(this.configuration).apiUserCurrentGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**

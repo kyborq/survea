@@ -43,7 +43,7 @@ namespace Web.Api
                     };
                 } );
             services.AddAuthorization();
-
+    
             services.AddControllers();
             services.AddSwaggerGen( c =>
             {
@@ -60,8 +60,8 @@ namespace Web.Api
                 app.UseSwaggerUI( c => c.SwaggerEndpoint( "/swagger/v1/swagger.json", "Web.Api v1" ) );
             }
 
-            app.UseCors( builder => builder.AllowAnyOrigin().AllowAnyHeader()
-                .WithMethods( "GET", "POST", "PUT", "DELETE" ) );
+            app.UseCors( builder => builder.WithOrigins("http://localhost:8080").AllowAnyHeader()
+                .WithMethods( "GET", "POST", "PUT", "DELETE" ).AllowCredentials() );
 
             app.UseRouting();
 

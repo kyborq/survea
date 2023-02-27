@@ -6,18 +6,19 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 import { Button } from "../../../components/button/Button";
+import { Question } from "../../../services";
 import { QuestionForm } from "./QuestionForm";
 import { QuestionPanel } from "./QuestionPanel";
 
 export type TQuestionsForm = {
-  question: string;
-  options: string[];
-  type: number;
+  questionName: string;
+  choices: string[];
+  questionType: number;
 };
 
 export type TQuestionForm = {
   name: string;
-  questions: TQuestionsForm[];
+  questions: Question[];
 };
 
 type Props = {
@@ -36,9 +37,23 @@ export const EditorForm: React.FC<Props> = ({ control, register }) => {
       <QuestionPanel
         addSingle={() => {
           append({
-            question: "Вопрос 1",
-            options: ["Опция 1", "Опция 2"],
-            type: 0,
+            questionName: "Одиночный выбор",
+            choices: ["Опция 1", "Опция 2"],
+            questionType: 0,
+          });
+        }}
+        addMultiple={() => {
+          append({
+            questionName: "Мульти выбор",
+            choices: ["Опция 1", "Опция 2"],
+            questionType: 1,
+          });
+        }}
+        addText={() => {
+          append({
+            questionName: "Текстовый вопрос",
+            choices: [],
+            questionType: 2,
           });
         }}
       />
@@ -57,6 +72,7 @@ export const EditorForm: React.FC<Props> = ({ control, register }) => {
               index={index}
               control={control}
               register={register}
+              type={field.questionType}
             />
           );
         })}
