@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -27,17 +28,24 @@ export const Login = () => {
 
     const loginApi = new LoginApi(config);
 
-    const result = await loginApi.apiLoginPost({
-      email: data.email,
-      password: data.password,
-    });
+    const result = await loginApi.apiLoginPost(
+      {
+        email: data.email,
+        password: data.password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
 
-    // TODO: При логине сохранить пользователя
+    // // TODO: При логине сохранить пользователя
 
-    if (result.status === 200) {
-      dispatch(setAuth(true));
-      navigate("/");
-    }
+    console.log(result);
+
+    // if (result.status === 200) {
+    //   dispatch(setAuth(true));
+    //   navigate("/");
+    // }
   };
 
   return (
