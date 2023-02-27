@@ -15,10 +15,10 @@ export const Root = () => {
 
   const isLogged = useAppSelector((state) => state.user.logged);
 
-  useEffect(() => {
-    !isLogged && navigate("/login");
-    isLogged && inAuth && navigate("/");
-  }, []);
+  // useEffect(() => {
+  //   !isLogged && navigate("/login");
+  //   isLogged && inAuth && navigate("/");
+  // }, []);
 
   return (
     <div className={styles.Root}>

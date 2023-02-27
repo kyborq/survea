@@ -20,3 +20,5 @@
 /src/DatabaseStorage.MsSql.Migrations/obj
 /src/Web.Frontend/App/node_modules/
 /src/Web.Frontend/App/package-lock.json
+src/Utils/bin/Debug/net5.0/Utils.dll
+src/Utils/bin/Debug/net5.0/Utils.pdb
