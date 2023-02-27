@@ -4,6 +4,8 @@ import { Button } from "../../components/button/Button";
 import { Card } from "../../components/card/Card";
 import { Wrap } from "../../components/wrap/Wrap";
 import { Configuration, LoginApi, UserApi } from "../../services";
+import { useAppDispatch } from "../../store/hooks";
+import { setAuth } from "../../store/userSlice";
 
 type TProfile = {
   name: string;
@@ -35,6 +37,7 @@ export const Profile = () => {
   useEffect(() => {
     getProfileInfo();
   }, []);
+  const dispatch = useAppDispatch();
 
   return (
     <Wrap title="Профиль" icon="user">
@@ -80,6 +83,7 @@ export const Profile = () => {
 
               if (result.status === 200) {
                 navigate("/login");
+                dispatch(setAuth(false));
               }
             }}
           />
