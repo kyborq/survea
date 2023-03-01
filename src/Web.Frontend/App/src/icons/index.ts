@@ -24,6 +24,8 @@ import at from "./at.svg";
 import password from "./password.svg";
 import key from "./key.svg";
 import userAdd from "./user-add.svg";
+import checboxChecked from "./checkbox-checked.svg";
+import checboxCircleChecked from "./checkbox-circle-checked.svg";
 
 export const icons = {
   user,
@@ -52,6 +54,8 @@ export const icons = {
   key,
   password,
   userAdd,
+  checboxChecked,
+  checboxCircleChecked,
 };
 
 export type TIcon = keyof typeof icons;

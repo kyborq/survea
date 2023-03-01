@@ -6,7 +6,7 @@
 }
 
 .Button {
-  flex: 1;
+  width: calc(50% - 6px);
   box-sizing: border-box;
 }
 

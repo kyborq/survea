@@ -10,6 +10,7 @@ import {
   TestApi,
   TestDto,
   NewAttemptDto,
+  AttemptApi,
 } from "../../services";
 import { useAppSelector } from "../../store/hooks";
 import { TestQuestion } from "./TestQuestion";
@@ -51,11 +52,37 @@ export const TestView = () => {
 
   return (
     <Wrap title={test?.name || "Тест"} icon="edit">
-      {/* ... */}
       {!!test &&
-        test.questions.map((q) => {
-          return <TestQuestion question={q} />;
+        test.questions.map((q, i) => {
+          return (
+            <TestQuestion
+              key={i}
+              index={i}
+              question={q}
+              control={control}
+              register={register}
+            />
+          );
         })}
+      <Button
+        label="Отправить"
+        primary
+        onClick={async () => {
+          const form = getValues();
+
+          const config = new Configuration({
+            basePath: "http://localhost:5001",
+          });
+
+          const attemptApi = new AttemptApi(config);
+
+          const result = await attemptApi.apiAttemptPost(form, {
+            withCredentials: true,
+          });
+
+          console.log(result);
+        }}
+      />
     </Wrap>
   );
 };
