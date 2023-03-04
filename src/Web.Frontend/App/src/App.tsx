@@ -9,6 +9,7 @@ import { Profile } from "./pages/Profile/Profile";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
 import { TestView } from "./pages/Home/TestView";
+import { Stats } from "./pages/Stats/Stats";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/stats/:id",
+        element: <Stats />,
       },
     ],
   },

@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button/Button";
 import { Input } from "../../components/input/Input";
 
@@ -25,6 +26,8 @@ export const Editor = () => {
       ],
     },
   });
+
+  const navigate = useNavigate();
 
   return (
     <Wrap title="Редактор" icon="edit">
@@ -55,6 +58,7 @@ export const Editor = () => {
             withCredentials: true,
           });
 
+          navigate("/");
           // console.log(result);
         }}
       />

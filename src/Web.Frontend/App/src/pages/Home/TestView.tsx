@@ -80,7 +80,7 @@ export const TestView = () => {
             withCredentials: true,
           });
 
-          console.log(result);
+          navigate("/");
         }}
       />
     </Wrap>

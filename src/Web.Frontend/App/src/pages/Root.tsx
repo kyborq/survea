@@ -13,6 +13,7 @@ export const Root = () => {
   const path = location.pathname;
 
   const inAuth = path.match(/login|register/);
+  const inStatsEditor = path.match(/editor|stats/);
 
   const isLogged = useAppSelector((state) => state.user.logged);
 
@@ -25,6 +26,11 @@ export const Root = () => {
     userApi
       .apiUserCurrentGet({
         withCredentials: true,
+      })
+      .then((result) => {
+        if (result.data.accountMode === 1 && inStatsEditor) {
+          navigate("/");
+        }
       })
       .catch(() => {
         navigate("/login");
